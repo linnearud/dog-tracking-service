@@ -30,7 +30,19 @@ public class UserDogAccess {
   public UserDogAccess() {
   }
 
+  public Dog getDog() {
+    return dog;
+  }
+
   public void setDog(Dog dog) {
     this.dog = dog;
+  }
+
+  public UserDogAccessRole getRole() {
+    return role;
+  }
+
+  public void setRole(UserDogAccessRole role) {
+    this.role = role;
   }
 }

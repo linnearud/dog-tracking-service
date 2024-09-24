@@ -1,7 +1,5 @@
 package com.dogtracking.data.track;
 
-import com.dogtracking.data.track.Track;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,12 +26,12 @@ public class TrackCoordinate {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(nullable = false)
-  private Track track;
+  private TrackData trackData;
 
   public TrackCoordinate() {}
 
-  public void setTrack(Track track) {
-    this.track = track;
+  public void setTrack(TrackData trackData) {
+    this.trackData = trackData;
   }
 
   public String getType() {

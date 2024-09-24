@@ -2,16 +2,16 @@ package com.dogtracking.data.track;
 
 import com.dogtracking.data.access.UserOriginalTrackAccess;
 
+import com.dogtracking.data.dog.Dog;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
+import javax.lang.model.util.Elements;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-public class OriginalTrack {
+public class DogTrack {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -19,20 +19,24 @@ public class OriginalTrack {
   @NotNull
   @OneToOne(cascade = CascadeType.ALL)
   private TrackData trackData;
-  @OneToMany(mappedBy = "originalTrack", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<UserOriginalTrackAccess> users = new HashSet<UserOriginalTrackAccess>();
 
-  @OneToMany(mappedBy = "originalTrack", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<DogTrack> dogTracks = new ArrayList<>();
+  @NotNull
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Dog dog;
+
+  @NotNull
+  @ManyToOne(fetch = FetchType.LAZY)
+  private OriginalTrack originalTrack;
+
   private String description;
 
-  public OriginalTrack(TrackData trackData, UserOriginalTrackAccess uota) {
-    this.trackData = trackData;
-    uota.setOriginalTrack(this);
-    this.users.add(uota);
-  }
+//  public DogTrack(TrackData trackData, UserOriginalTrackAccess uota) {
+//    this.trackData = trackData;
+//    uota.setOriginalTrack(this);
+//    this.users.add(uota);
+//  }
 
-  public OriginalTrack() {}
+  public DogTrack() {}
 
   public TrackData getTrackData() {
     return trackData;

@@ -1,6 +1,7 @@
 package com.dogtracking.data.access;
 
 import com.dogtracking.data.track.OriginalTrack;
+import com.dogtracking.data.track.TrackData;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,13 +29,22 @@ public class UserOriginalTrackAccess {
   public UserOriginalTrackAccess() {
   }
 
+
+  public UserOriginalTrackAccessRole getRole() { return this.role; }
+
+  public void setRole(UserOriginalTrackAccessRole role) {
+    this.role = role;
+  }
+
+  public OriginalTrack getOriginalTrack() {
+    return originalTrack;
+  }
+
   public void setOriginalTrack(OriginalTrack originalTrack) {
     this.originalTrack = originalTrack;
   }
 
-  public UserOriginalTrackAccessRole getRole() { return this.role; }
-
-  public OriginalTrack getOriginalTrack() {
-    return originalTrack;
+  public TrackData getTrackData() {
+    return originalTrack.getTrackData();
   }
 }
